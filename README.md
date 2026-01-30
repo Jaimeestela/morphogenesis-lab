@@ -1,31 +1,31 @@
 # morphogenesis-lab
 
-Repositorio de laboratorio para **reacción–difusión tipo Turing** y generación de geometría CAD a partir de patrones: validación numérica del núcleo del paper de Turing (1952), extracción de trayectorias (streamlines, serpentine) y export a DXF/SVG.
+Laboratory repository for **Turing-style reaction–diffusion** and CAD geometry generation from patterns: numerical validation of the core of Turing (1952), trajectory extraction (streamlines, serpentine), and export to DXF/SVG.
 
-## Qué es este repositorio
+## What this repository is
 
-- **Reproducción y validación numérica** del mecanismo central del artículo de Turing (1952): sistemas de reacción–difusión y formación de patrón por **inestabilidad del equilibrio homogéneo** (linealización + simulación no lineal), en 2D.
-- **Pipeline hacia CAD**: convertir patrones/campos en geometría útil: trayectorias tipo mecanizado, tuberías o suelo radiante dentro de dominios 2D (plantas), con vistas a 3D (superficies, losas).
-- **Diseñado para iterar con LLMs** (GPT, Cursor): experimentos reproducibles, métricas y flujo “paper → prototipo”.
+- **Numerical reproduction and validation** of the central mechanism of Turing (1952): reaction–diffusion systems and pattern formation via **homogeneous equilibrium instability** (linearization + nonlinear simulation), in 2D.
+- **Pipeline to CAD**: convert patterns/fields into useful geometry: machining-like paths, pipes, or underfloor heating within 2D domains (floor plans), with a view to 3D (surfaces, slabs).
+- **Designed for LLM iteration** (GPT, Cursor): reproducible experiments, metrics, and “paper → prototype” workflow.
 
-La conexión con el paper de Turing es conceptual y matemática: usamos el mismo marco (PDE reacción–difusión, linealización en torno al equilibrio, difusión que desestabiliza y selecciona una longitud de onda). No copiamos texto literal; véase [docs/01_turing_summary.md](docs/01_turing_summary.md).
+The connection with Turing’s paper is conceptual and mathematical: we use the same framework (reaction–diffusion PDE, linearization around equilibrium, diffusion that destabilizes and selects a wavelength). We do not copy literal text; see [docs/01_turing_summary.md](docs/01_turing_summary.md).
 
 ---
 
-## Qué parte reproduce de Turing
+## What it reproduces from Turing
 
-- **Modelo**: dos especies (u, v) con reacción no lineal y difusión (coeficientes Du, Dv). Ecuaciones tipo  
+- **Model**: two species (u, v) with nonlinear reaction and diffusion (coefficients Du, Dv). Equations of the form  
   `∂u/∂t = Du ∇²u + f(u,v)`, `∂v/∂t = Dv ∇²v + g(u,v)`.
-- **Inestabilidad del equilibrio homogéneo**: linealización en (u₀, v₀); para cada modo espacial k, se estudia el operador lineal `J - k² D`. Bajo ciertos parámetros, la difusión desestabiliza el equilibrio y aparece un **modo dominante** (k que maximiza Re(λ)).
-- **Simulación no lineal**: integración temporal en malla 2D (FD 5-point) para ver patrones tipo “ondas estacionarias” (manchas, rayas, etc.).
+- **Homogeneous equilibrium instability**: linearization at (u₀, v₀); for each spatial mode k, the linear operator `J - k² D` is studied. Under certain parameters, diffusion destabilizes the equilibrium and a **dominant mode** appears (k that maximizes Re(λ)).
+- **Nonlinear simulation**: temporal integration on a 2D grid (5-point FD) to observe “standing wave” patterns (spots, stripes, etc.).
 
-Implementamos **Gray-Scott**, **Schnakenberg** y **Brusselator** como modelos estándar y un módulo de **estabilidad lineal** para estimar el modo dominante sin simular.
+We implement **Gray-Scott**, **Schnakenberg**, and **Brusselator** as standard models and a **linear stability** module to estimate the dominant mode without simulating.
 
 ---
 
-## Instalación
+## Installation
 
-### Con Conda (recomendado)
+### With Conda (recommended)
 
 ```bash
 cd morphogenesis-lab
@@ -34,7 +34,7 @@ conda activate morphogenesis-lab
 pip install -e .
 ```
 
-### Con venv
+### With venv
 
 ```bash
 cd morphogenesis-lab
@@ -47,48 +47,48 @@ pip install -e .
 
 ---
 
-## Cómo ejecutar experimentos
+## How to run experiments
 
 ```bash
-# Patrones 2D (Gray-Scott, Schnakenberg, Brusselator)
+# 2D patterns (Gray-Scott, Schnakenberg, Brusselator)
 python experiments/01_gray_scott_2d.py
 python experiments/02_schnakenberg_2d.py
 python experiments/03_brusselator_2d.py
 
-# De patrón RD → streamlines → DXF/SVG
+# RD pattern → streamlines → DXF/SVG
 python experiments/10_rd_to_streamlines.py
 
-# Serpentine por estancias + colector (dominio multi-estancia)
+# Serpentine per room + collector (multi-room domain)
 python experiments/11_rd_to_serpentine_rooms.py
 
-# Export DXF directo
+# Direct DXF export
 python experiments/12_export_dxf.py
 ```
 
-Los resultados se escriben en `data/outputs/patterns/`, `data/outputs/paths/` y `data/outputs/exports/`.
+Results are written to `data/outputs/patterns/`, `data/outputs/paths/`, and `data/outputs/exports/`.
 
 ---
 
-## Outputs que produce
+## Outputs it produces
 
-- **Imágenes de patrón**: PNG de snapshots u/v (y opcionalmente mapa de color) en `data/outputs/patterns/`.
-- **Arrays**: numpy (`.npy`) o similar para reproducir o post-procesar.
-- **Trayectorias**: polilíneas (streamlines o serpentine) exportadas a **DXF** (capas por estancia/colector/rutas) y **SVG** para inspección rápida en `data/outputs/exports/`.
-
----
-
-## Roadmap por hitos
-
-| Hito | Descripción |
-|------|-------------|
-| **1** | Patrones 2D estables reproducibles (Gray-Scott, Schnakenberg, Brusselator) y validación con análisis de estabilidad lineal. |
-| **2** | Extracción de trayectorias: campo escalar → vectorial → streamlines con separación mínima y clipping a dominio; export DXF/SVG. |
-| **3** | Multi-estancia con colector: dominio por estancias (GeoJSON), serpentine por habitación y grafo de rutas hacia colector. |
-| **4** | Salto a 3D: superficies, losas y export mesh (STL/STEP) para integración futura en FreeCAD/LignumBIM. |
+- **Pattern images**: PNG snapshots of u/v (and optional colormap) in `data/outputs/patterns/`.
+- **Arrays**: numpy (`.npy`) or similar for reproduction or post-processing.
+- **Trajectories**: polylines (streamlines or serpentine) exported to **DXF** (layers per room/collector/routes) and **SVG** for quick inspection in `data/outputs/exports/`.
 
 ---
 
-## Primeros 3 comandos para empezar
+## Roadmap by milestones
+
+| Milestone | Description |
+|-----------|-------------|
+| **1** | Reproducible stable 2D patterns (Gray-Scott, Schnakenberg, Brusselator) and validation with linear stability analysis. |
+| **2** | Trajectory extraction: scalar field → vector field → streamlines with minimum separation and domain clipping; DXF/SVG export. |
+| **3** | Multi-room with collector: domain by rooms (GeoJSON), serpentine per room and route graph to collector. |
+| **4** | Jump to 3D: surfaces, slabs, and mesh export (STL/STEP) for future integration in FreeCAD/LignumBIM. |
+
+---
+
+## First 3 commands to get started
 
 ```bash
 conda activate morphogenesis-lab
@@ -96,42 +96,42 @@ python experiments/00_smoke_test.py
 python experiments/01_gray_scott_2d.py
 ```
 
-Luego revisa `data/outputs/patterns/` para los PNG del patrón.
+Then check `data/outputs/patterns/` for pattern PNGs.
 
 ---
 
-## Qué mirar en los outputs
+## What to look at in the outputs
 
-- **`data/outputs/patterns/`**: PNG de u/v en distintos tiempos; comprueba que no hay explosión numérica (valores finitos) y que el patrón es estable.
-- **`data/outputs/paths/`**: geometrías intermedias (listas de puntos) si se guardan.
-- **`data/outputs/exports/`**: DXF y SVG; ábrelos en un visor o CAD para comprobar capas, longitud y que las líneas no salen del dominio.
-
----
-
-## Siguientes pasos para integrar en FreeCAD/LignumBIM (futuro)
-
-- Importar DXF en FreeCAD como croquis o geometría 2D y extrudir/barrido para tuberías o losas.
-- Definir convenciones de capas (estancia, colector, rutas) compatibles con flujos BIM.
-- Exportar mallas 3D (STL) o STEP desde `mesh_export` para análisis estructural o fabricación.
+- **`data/outputs/patterns/`**: PNGs of u/v at different times; check for no numerical blow-up (finite values) and stable pattern.
+- **`data/outputs/paths/`**: intermediate geometries (point lists) if saved.
+- **`data/outputs/exports/`**: DXF and SVG; open in a viewer or CAD to check layers, length, and that lines stay inside the domain.
 
 ---
 
-## Documentación
+## Next steps for FreeCAD/LignumBIM integration (future)
 
-- [docs/00_context.md](docs/00_context.md) — Contexto del proyecto.
-- [docs/01_turing_summary.md](docs/01_turing_summary.md) — Resumen técnico del paper de Turing e ideas reutilizables.
-- [docs/02_math_model.md](docs/02_math_model.md) — Modelo matemático.
-- [docs/03_numerics.md](docs/03_numerics.md) — Discretización y solvers.
-- [docs/04_cad_pipeline.md](docs/04_cad_pipeline.md) — Pipeline reacción–difusión → CAD y criterios de evaluación.
-- [docs/05_experiments.md](docs/05_experiments.md) — Descripción de experimentos.
-- [docs/06_results_log.md](docs/06_results_log.md) — Registro de resultados.
+- Import DXF in FreeCAD as sketch or 2D geometry and extrude/sweep for pipes or slabs.
+- Define layer conventions (room, collector, routes) compatible with BIM workflows.
+- Export 3D meshes (STL) or STEP from `mesh_export` for structural analysis or fabrication.
 
 ---
 
-## Licencia
+## Documentation
 
-MIT. Ver [LICENSE](LICENSE).
+- [docs/00_context.md](docs/00_context.md) — Project context.
+- [docs/01_turing_summary.md](docs/01_turing_summary.md) — Technical summary of Turing’s paper and reusable ideas.
+- [docs/02_math_model.md](docs/02_math_model.md) — Mathematical model.
+- [docs/03_numerics.md](docs/03_numerics.md) — Discretization and solvers.
+- [docs/04_cad_pipeline.md](docs/04_cad_pipeline.md) — Reaction–diffusion → CAD pipeline and evaluation criteria.
+- [docs/05_experiments.md](docs/05_experiments.md) — Experiment description.
+- [docs/06_results_log.md](docs/06_results_log.md) — Results log.
 
-## Citar
+---
 
-Ver [CITATION.cff](CITATION.cff). Para el paper original: Turing, A. M. (1952). The chemical basis of morphogenesis. *Philosophical Transactions of the Royal Society of London B*, 237(641), 37–72.
+## License
+
+MIT. See [LICENSE](LICENSE).
+
+## Cite
+
+See [CITATION.cff](CITATION.cff). For the original paper: Turing, A. M. (1952). The chemical basis of morphogenesis. *Philosophical Transactions of the Royal Society of London B*, 237(641), 37–72.

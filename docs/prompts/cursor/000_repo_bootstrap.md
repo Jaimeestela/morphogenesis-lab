@@ -1,17 +1,17 @@
-# Cursor: bootstrap del repo morphogenesis-lab
+# Cursor: morphogenesis-lab repo bootstrap
 
-## Objetivo
+## Objective
 
-Inicializar el repositorio morphogenesis-lab con estructura, dependencias y núcleo Python para reacción–difusión (Turing) y pipeline hacia CAD.
+Initialize the morphogenesis-lab repository with structure, dependencies, and core Python for reaction–diffusion (Turing) and pipeline to CAD.
 
-## Tareas
+## Tasks
 
-1. Crear estructura de carpetas: `src/morphogenesis/`, `experiments/`, `data/outputs/`, `docs/`, `matlab/`, `tests/`, `notebooks/`.
-2. Añadir `environment.yml`, `requirements.txt`, `pyproject.toml` (ruff, black, mypy opcional).
-3. Implementar módulos mínimos: `rd_models.py` (Gray-Scott, Schnakenberg, Brusselator), `rd_solvers.py` (FD 5-point, Euler/RK2), `stability.py` (autovalores J − k² D, modo dominante).
-4. Añadir experimento smoke test y uno de patrón 2D (p. ej. Gray-Scott) que guarde PNG en `data/outputs/patterns/`.
+1. Create folder structure: `src/morphogenesis/`, `experiments/`, `data/outputs/`, `docs/`, `matlab/`, `tests/`, `notebooks/`.
+2. Add `environment.yml`, `requirements.txt`, `pyproject.toml` (ruff, black, optional mypy).
+3. Implement minimal modules: `rd_models.py` (Gray-Scott, Schnakenberg, Brusselator), `rd_solvers.py` (5-point FD, Euler/RK2), `stability.py` (eigenvalues of J − k² D, dominant mode).
+4. Add smoke test experiment and one 2D pattern experiment (e.g. Gray-Scott) that saves PNG in `data/outputs/patterns/`.
 
-## Criterios de éxito
+## Success criteria
 
-- `pip install -e .` y `python experiments/00_smoke_test.py` pasan.
-- Un experimento de patrón genera al menos un PNG en `data/outputs/patterns/`.
+- `pip install -e .` and `python experiments/00_smoke_test.py` pass.
+- One pattern experiment produces at least one PNG in `data/outputs/patterns/`.

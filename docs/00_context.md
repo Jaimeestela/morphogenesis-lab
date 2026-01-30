@@ -1,28 +1,28 @@
-# Contexto del proyecto
+# Project context
 
-## Objetivo
+## Objective
 
-Este repositorio (**morphogenesis-lab**) tiene dos ejes:
+This repository (**morphogenesis-lab**) has two main axes:
 
-1. **Validación numérica del núcleo del paper de Turing (1952)**  
-   Reproducir y verificar en 2D: sistemas reacción–difusión, linealización en torno al equilibrio homogéneo, y formación de patrón por inestabilidad (modo dominante). No se copia texto literal del paper; se usa como inspiración conceptual y matemática.
+1. **Numerical validation of the core of Turing (1952)**  
+   Reproduce and verify in 2D: reaction–diffusion systems, linearization around homogeneous equilibrium, and pattern formation by instability (dominant mode). No literal text is copied from the paper; it is used as conceptual and mathematical inspiration.
 
-2. **Pipeline hacia geometría CAD**  
-   Convertir patrones/campos en trayectorias útiles: streamlines (tipo tuberías/mecanizado) y serpentine (suelo radiante) dentro de dominios 2D (plantas), con export a DXF/SVG y preparación para 3D.
+2. **Pipeline to CAD geometry**  
+   Convert patterns/fields into useful trajectories: streamlines (pipe/machining-like) and serpentine (underfloor heating) within 2D domains (floor plans), with export to DXF/SVG and preparation for 3D.
 
-## Público
+## Audience
 
-- Desarrolladores e investigadores que quieran iterar con LLMs (GPT, Cursor) en experimentos reproducibles.
-- Quienes necesiten un baseline numérico (Python + MATLAB opcional) para estabilidad y solvers, y un pipeline claro “patrón → trayectorias → CAD”.
+- Developers and researchers who want to iterate with LLMs (GPT, Cursor) on reproducible experiments.
+- Those who need a numerical baseline (Python + optional MATLAB) for stability and solvers, and a clear “pattern → trajectories → CAD” pipeline.
 
 ## Stack
 
-- **Python**: numpy, scipy, numba, matplotlib, shapely, scikit-image, networkx; opcional trimesh, pyvista.
-- **MATLAB**: prototipado rápido de PDE (FD/FE) y análisis espectral para validación cruzada.
-- **LLM workflow**: prompts versionados en `docs/prompts/`, guías para Cursor/GPT.
+- **Python**: numpy, scipy, numba, matplotlib, shapely, scikit-image, networkx; optional trimesh, pyvista.
+- **MATLAB**: quick PDE prototyping (FD/FE) and spectral analysis for cross-validation.
+- **LLM workflow**: versioned prompts in `docs/prompts/`, guides for Cursor/GPT.
 
-## Convenciones
+## Conventions
 
-- Entornos: conda (recomendado) o venv; `environment.yml` y `requirements.txt`.
-- Código con docstrings y typing; ruff + black (+ mypy opcional).
-- Outputs en `data/outputs/`; experimentos reproducibles como scripts en `experiments/`.
+- Environments: conda (recommended) or venv; `environment.yml` and `requirements.txt`.
+- Code with docstrings and typing; ruff + black (+ optional mypy).
+- Outputs in `data/outputs/`; reproducible experiments as scripts in `experiments/`.

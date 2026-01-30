@@ -1,20 +1,20 @@
-# Registro de resultados
+# Results log
 
-Plantilla para anotar resultados de experimentos (fecha, parámetros, outputs y observaciones).
+Template for recording experiment results (date, parameters, outputs, and notes).
 
-## Formato sugerido
+## Suggested format
 
-| Fecha | Experimento | Parámetros clave | Outputs | Notas |
-|-------|-------------|------------------|---------|-------|
-| YYYY-MM-DD | 01_gray_scott_2d | F=0.03, k=0.062, nx=256 | patterns/gs_*.png | Patrón manchas estable |
+| Date | Experiment | Key parameters | Outputs | Notes |
+|------|------------|----------------|---------|-------|
+| YYYY-MM-DD | 01_gray_scott_2d | F=0.03, k=0.062, nx=256 | patterns/gs_*.png | Stable spot pattern |
 | ... | ... | ... | ... | ... |
 
-## Métricas (cuando aplique)
+## Metrics (when applicable)
 
-- Longitud total (m o u.a.)
-- Uniformidad de cobertura (std de distancias)
-- Radios mínimos, cruces, distancia a bordes (ver docs/04_cad_pipeline.md).
+- Total length (m or a.u.)
+- Coverage uniformity (std of distances)
+- Minimum radii, crossings, distance to borders (see docs/04_cad_pipeline.md).
 
 ---
 
-*(Este archivo se va rellenando al ejecutar experimentos.)*
+*(This file is filled in as experiments are run.)*

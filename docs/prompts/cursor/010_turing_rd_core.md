@@ -1,17 +1,17 @@
-# Cursor: núcleo Turing (reacción–difusión)
+# Cursor: Turing core (reaction–diffusion)
 
-## Objetivo
+## Objective
 
-Implementar y validar el núcleo numérico del paper de Turing: modelos RD, solver 2D y análisis de estabilidad lineal.
+Implement and validate the numerical core of Turing’s paper: RD models, 2D solver, and linear stability analysis.
 
-## Tareas
+## Tasks
 
-1. **rd_models.py**: Gray-Scott, Schnakenberg, Brusselator con `reaction(u, v, params)` y equilibrio homogéneo (u0, v0) cuando aplique.
-2. **rd_solvers.py**: Laplaciano 5-point, Neumann/Dirichlet, Euler explícito + opción RK2, semilla reproducible.
-3. **stability.py**: Dado (u0, v0) y parámetros, Jacobiano J; para un rango de k, autovalores de (J − k² D); devolver k que maximiza Re(λ).
-4. Experimentos 01–03: cada modelo genera snapshots PNG y arrays; documentar parámetros en cabecera del script.
+1. **rd_models.py**: Gray-Scott, Schnakenberg, Brusselator with `reaction(u, v, params)` and homogeneous equilibrium (u0, v0) when applicable.
+2. **rd_solvers.py**: 5-point Laplacian, Neumann/Dirichlet, explicit Euler + RK2 option, reproducible seed.
+3. **stability.py**: Given (u0, v0) and parameters, Jacobian J; for a range of k, eigenvalues of (J − k² D); return k that maximizes Re(λ).
+4. Experiments 01–03: each model produces PNG snapshots and arrays; document parameters in script header.
 
-## Criterios
+## Criteria
 
-- Solver no produce NaNs en runs típicos (tests de sanidad).
-- stability devuelve un k numérico (no simbólico) y forma coherente con la teoría (modo dominante).
+- Solver does not produce NaNs in typical runs (sanity tests).
+- stability returns a numerical k (not symbolic) and form consistent with theory (dominant mode).

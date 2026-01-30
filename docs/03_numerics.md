@@ -1,32 +1,32 @@
-# Discretización y solvers
+# Discretization and solvers
 
-## Malla
+## Grid
 
-- Dominio rectangular 2D discretizado en malla regular (nx × ny).
-- Espaciado Δx, Δy (constantes).
+- 2D rectangular domain discretized on a regular grid (nx × ny).
+- Spacing Δx, Δy (constants).
 
-## Laplaciano
+## Laplacian
 
-- Diferencias finitas 5-point:  
+- Five-point finite differences:  
   ∇²φ ≈ (φ_{i+1,j} + φ_{i-1,j} + φ_{i,j+1} + φ_{i,j-1} − 4φ_{i,j}) / h²  
-  con h = Δx = Δy si malla cuadrada.
+  with h = Δx = Δy for a square grid.
 
-## Condiciones de contorno
+## Boundary conditions
 
-- **Neumann (reflectante)**: derivada normal cero; se implementa con “ghost” cells o actualizando bordes para que el flujo sea nulo.
-- **Dirichlet**: valores fijos en el borde (p. ej. equilibrio homogéneo).
+- **Neumann (reflecting)**: zero normal derivative; implemented with ghost cells or by updating edges so that flux is zero.
+- **Dirichlet**: fixed values on the boundary (e.g. homogeneous equilibrium).
 
-## Integración temporal
+## Temporal integration
 
-- **Euler explícito**: u^{n+1} = u^n + Δt (D_u L[u^n] + f(u^n,v^n)), idem para v. Estabilidad: Δt limitado por CFL (difusión).
-- **RK2 (opcional)**: paso intermedio y promediado para mejor precisión temporal.
+- **Explicit Euler**: u^{n+1} = u^n + Δt (D_u L[u^n] + f(u^n,v^n)), same for v. Stability: Δt limited by CFL (diffusion).
+- **RK2 (optional)**: intermediate step and averaging for better temporal accuracy.
 
-## Semilla inicial
+## Initial seed
 
-- Equilibrio homogéneo + perturbación aleatoria reproducible (semilla fija) para romper simetría y disparar inestabilidad.
+- Homogeneous equilibrium + reproducible random perturbation (fixed seed) to break symmetry and trigger instability.
 
 ## Output
 
-- Campos u, v en cada paso (o en intervalos); snapshots guardados como arrays y/o imágenes (PNG).
+- Fields u, v at each step (or at intervals); snapshots saved as arrays and/or images (PNG).
 
-Implementación: `src/morphogenesis/rd_solvers.py` y `grids.py`.
+Implementation: `src/morphogenesis/rd_solvers.py` and `grids.py`.

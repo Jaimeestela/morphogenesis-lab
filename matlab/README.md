@@ -1,28 +1,28 @@
-# MATLAB scripts (validación y prototipado)
+# MATLAB scripts (validation and prototyping)
 
-## Cuándo usar MATLAB
+## When to use MATLAB
 
-1. **Validar estabilidad y modo dominante** rápidamente: barrido de k y autovalores de (J − k² D) sin depender del solver Python.
-2. **Comprobar que el solver Python no se inventa dinámica**: comparar snapshots o evolución temporal con una implementación FD en MATLAB.
-3. **Prototipar variantes de discretización**: probar esquemas (FD, FE) o condiciones de contorno antes de llevarlos a Python.
+1. **Validate stability and dominant mode** quickly: sweep k and eigenvalues of (J − k² D) without depending on the Python solver.
+2. **Check that the Python solver does not invent dynamics**: compare snapshots or temporal evolution with an FD implementation in MATLAB.
+3. **Prototype discretization variants**: try schemes (FD, FE) or boundary conditions before porting to Python.
 
-## Archivos
+## Files
 
-- **rd_fd_2d.m**: Simulación FD 2D básica (Laplaciano 5-point, Euler explícito) para un modelo (p. ej. Gray-Scott o Schnakenberg).
-- **rd_stability_linear.m**: Cálculo de autovalores de (J − k² D) para un rango de k; devuelve el k que maximiza Re(λ).
-- **rd_demo_patterns.m**: Script de demostración que llama a rd_fd_2d y opcionalmente rd_stability_linear, y guarda figuras.
+- **rd_fd_2d.m**: Basic 2D FD simulation (5-point Laplacian, explicit Euler) for a model (e.g. Gray-Scott or Schnakenberg).
+- **rd_stability_linear.m**: Computation of eigenvalues of (J − k² D) for a range of k; returns the k that maximizes Re(λ).
+- **rd_demo_patterns.m**: Demo script that calls rd_fd_2d and optionally rd_stability_linear, and saves figures.
 
-## Cómo ejecutar
+## How to run
 
-Desde MATLAB, en el directorio `matlab/`:
+From MATLAB, in the `matlab/` directory:
 
 ```matlab
-rd_stability_linear   % barrido de k y modo dominante
-rd_fd_2d             % una corrida FD 2D
-rd_demo_patterns     % demo completa
+rd_stability_linear   % k sweep and dominant mode
+rd_fd_2d             % one FD 2D run
+rd_demo_patterns     % full demo
 ```
 
-## Validación cruzada con Python
+## Cross-validation with Python
 
-- Comparar el `k` dominante devuelto por `rd_stability_linear.m` con `morphogenesis.stability.dominant_mode()`.
-- Comparar un snapshot (u,v) de `rd_fd_2d.m` con el de `experiments/01_gray_scott_2d.py` (mismos parámetros y semilla si aplica).
+- Compare the dominant `k` returned by `rd_stability_linear.m` with `morphogenesis.stability.dominant_mode()`.
+- Compare a (u,v) snapshot from `rd_fd_2d.m` with that from `experiments/01_gray_scott_2d.py` (same parameters and seed if applicable).

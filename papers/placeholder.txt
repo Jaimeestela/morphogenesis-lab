@@ -1,10 +1,10 @@
-Placeholder: el PDF del paper de Turing (1952) no se incluye por posibles restricciones de derechos.
+Placeholder: the Turing (1952) paper PDF is not included due to possible copyright restrictions.
 
-Instrucciones para el usuario:
-1. Descargar "The chemical basis of morphogenesis" (Turing, A. M., 1952),
+Instructions for the user:
+1. Download "The chemical basis of morphogenesis" (Turing, A. M., 1952),
    Philosophical Transactions of the Royal Society of London B, 237(641), 37-72.
 2. DOI: 10.1098/rstb.1952.0012
-3. Guardar como papers/turing1952.pdf si se desea tener una copia local.
+3. Save as papers/turing1952.pdf if you want a local copy.
 
-El repositorio usa el paper como inspiración conceptual y matemática; no se copia texto literal.
-Véase docs/01_turing_summary.md para un resumen técnico.
+The repository uses the paper as conceptual and mathematical inspiration; no literal text is copied.
+See docs/01_turing_summary.md for a technical summary.

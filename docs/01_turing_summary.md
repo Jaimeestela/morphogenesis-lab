@@ -1,37 +1,37 @@
-# Resumen técnico del paper de Turing (1952)
+# Technical summary of Turing (1952)
 
-Este documento resume las ideas centrales del artículo **“The chemical basis of morphogenesis”** (Turing, 1952). El repositorio usa el paper como inspiración conceptual y matemática; no se copia texto literal.
+This document summarizes the central ideas of **“The chemical basis of morphogenesis”** (Turing, 1952). The repository uses the paper as conceptual and mathematical inspiration; no literal text is copied.
 
-## Resumen en 1–2 páginas
+## Summary in 1–2 pages
 
-Turing propone que patrones espaciales en sistemas biológicos (p. ej. manchas, rayas) pueden surgir por **inestabilidad de un equilibrio homogéneo** en un sistema de reacción–difusión con dos (o más) morfógenos. La idea clave: en un sistema solo con reacción, el equilibrio homogéneo puede ser estable; al añadir **difusión con coeficientes distintos** para cada especie, el operador lineal que gobierna las perturbaciones puede volverse inestable para ciertos modos espaciales. Así, la difusión “desestabiliza” el estado uniforme y selecciona una **longitud de onda** (o modo dominante) que da lugar al patrón.
+Turing proposed that spatial patterns in biological systems (e.g. spots, stripes) can arise from **instability of a homogeneous equilibrium** in a reaction–diffusion system with two (or more) morphogens. The key idea: in a reaction-only system, the homogeneous equilibrium can be stable; when **diffusion with different coefficients** for each species is added, the linear operator governing perturbations can become unstable for certain spatial modes. Thus diffusion “destabilizes” the uniform state and selects a **wavelength** (or dominant mode) that gives rise to the pattern.
 
-- **Modelo**: PDE de reacción–difusión para dos concentraciones u, v:
+- **Model**: Reaction–diffusion PDE for two concentrations u, v:
   - ∂u/∂t = D_u ∇²u + f(u,v)
   - ∂v/∂t = D_v ∇²v + g(u,v)
-  con f, g no lineales.
+  with f, g nonlinear.
 
-- **Equilibrio homogéneo**: (u₀, v₀) tal que f(u₀,v₀)=0, g(u₀,v₀)=0.
+- **Homogeneous equilibrium**: (u₀, v₀) such that f(u₀,v₀)=0, g(u₀,v₀)=0.
 
-- **Linealización**: Se perturba (u,v) = (u₀,v₀) + (δu, δv). En espacio de Fourier (modo e^{ik·x}), el crecimiento de la perturbación viene gobernado por los autovalores de la matriz **J − k² D**, donde J es el Jacobiano de (f,g) en (u₀,v₀) y D = diag(D_u, D_v). Si para algún k ≠ 0 la parte real de un autovalor es > 0, el equilibrio homogéneo es inestable frente a ese modo.
+- **Linearization**: Perturb (u,v) = (u₀,v₀) + (δu, δv). In Fourier space (mode e^{ik·x}), the growth of the perturbation is governed by the eigenvalues of the matrix **J − k² D**, where J is the Jacobian of (f,g) at (u₀,v₀) and D = diag(D_u, D_v). If for some k ≠ 0 the real part of an eigenvalue is > 0, the homogeneous equilibrium is unstable to that mode.
 
-- **Modo dominante**: El k (o longitud de onda) que maximiza Re(λ) es el que crece más rápido y suele determinar la escala del patrón (“ondas estacionarias” en 2D).
+- **Dominant mode**: The k (or wavelength) that maximizes Re(λ) grows fastest and typically sets the scale of the pattern (“standing waves” in 2D).
 
-- **Simulación no lineal**: Integrar las PDE en 2D con condiciones de contorno adecuadas produce patrones (manchas, rayas, etc.) coherentes con el análisis lineal.
+- **Nonlinear simulation**: Integrating the PDEs in 2D with suitable boundary conditions yields patterns (spots, stripes, etc.) consistent with linear analysis.
 
-## Ideas reutilizables en este repo
+## Reusable ideas in this repo
 
-| Idea | Uso en el repo |
-|------|-----------------|
-| Modelo reacción–difusión (PDE) | Gray-Scott, Schnakenberg, Brusselator en `rd_models.py`; solver 2D en `rd_solvers.py`. |
-| Linealización en torno al equilibrio y criterio de inestabilidad (modo/longitud de onda dominante) | `stability.py`: cálculo numérico de autovalores de (J − k² D) y búsqueda del k dominante. |
-| Interpretación de patrones como “ondas estacionarias” y generalización a 2D | Patrones 2D en malla regular; snapshots y análisis de escala. |
+| Idea | Use in repo |
+|------|-------------|
+| Reaction–diffusion model (PDE) | Gray-Scott, Schnakenberg, Brusselator in `rd_models.py`; 2D solver in `rd_solvers.py`. |
+| Linearization around equilibrium and instability criterion (dominant mode/wavelength) | `stability.py`: numerical computation of eigenvalues of (J − k² D) and search for dominant k. |
+| Interpretation of patterns as “standing waves” and 2D generalization | 2D patterns on a regular grid; snapshots and scale analysis. |
 
-## Qué NO copiamos y qué adaptamos
+## What we do NOT copy and what we adapt
 
-- **No copiamos**: texto largo literal del paper; demostraciones formales; notación exacta de Turing.
-- **Adaptamos a ingeniería/CAD**: los campos u/v (o funciones de ellos) se usan como **campos escalares** para derivar trayectorias (streamlines, isocontornos) y generar geometría (polilíneas DXF/SVG) para tuberías, suelo radiante, etc. El criterio de estabilidad lineal se usa para elegir parámetros y escala de patrón antes de simular.
+- **We do not copy**: long literal text from the paper; formal proofs; Turing’s exact notation.
+- **We adapt to engineering/CAD**: the fields u/v (or functions of them) are used as **scalar fields** to derive trajectories (streamlines, isocontours) and generate geometry (DXF/SVG polylines) for pipes, underfloor heating, etc. The linear stability criterion is used to choose parameters and pattern scale before simulating.
 
-## Referencia
+## Reference
 
 Turing, A. M. (1952). The chemical basis of morphogenesis. *Philosophical Transactions of the Royal Society of London B*, 237(641), 37–72. DOI: 10.1098/rstb.1952.0012.

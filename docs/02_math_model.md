@@ -1,33 +1,33 @@
-# Modelo matemático
+# Mathematical model
 
-## PDE reacción–difusión (2 especies)
+## Reaction–diffusion PDE (2 species)
 
-En el dominio espacial Ω (2D) y tiempo t:
+In spatial domain Ω (2D) and time t:
 
 - ∂u/∂t = D_u ∇²u + f(u, v)
 - ∂v/∂t = D_v ∇²v + g(u, v)
 
-con:
-- u, v: concentraciones (campos escalares).
-- D_u, D_v: coeficientes de difusión (constantes).
-- f, g: términos de reacción (no lineales).
+with:
+- u, v: concentrations (scalar fields).
+- D_u, D_v: diffusion coefficients (constants).
+- f, g: reaction terms (nonlinear).
 
-## Equilibrio homogéneo
+## Homogeneous equilibrium
 
-Punto (u₀, v₀) tal que f(u₀, v₀) = 0 y g(u₀, v₀) = 0. En el paper de Turing, la estabilidad de este equilibrio se analiza linealizando y estudiando modos espaciales.
+Point (u₀, v₀) such that f(u₀, v₀) = 0 and g(u₀, v₀) = 0. In Turing’s paper, the stability of this equilibrium is analyzed by linearizing and studying spatial modes.
 
-## Linealización y modos
+## Linearization and modes
 
-Perturbación (δu, δv) = (U, V) e^{i k·x + λ t}. Sustituyendo en las PDE linealizadas se obtiene el problema de autovalores:
+Perturbation (δu, δv) = (U, V) e^{i k·x + λ t}. Substituting into the linearized PDEs yields the eigenvalue problem:
 
 - (J − k² D) (U, V)^T = λ (U, V)^T
 
-con J = Jacobiano de (f,g) en (u₀,v₀) y D = diag(D_u, D_v). Si existe k ≠ 0 con Re(λ) > 0, el equilibrio homogéneo es inestable; el k que maximiza Re(λ) es el modo dominante.
+with J = Jacobian of (f,g) at (u₀,v₀) and D = diag(D_u, D_v). If there exists k ≠ 0 with Re(λ) > 0, the homogeneous equilibrium is unstable; the k that maximizes Re(λ) is the dominant mode.
 
-## Modelos implementados
+## Implemented models
 
-- **Gray-Scott**: f = −uv² + F(1−u), g = uv² − (F+k)v. Parámetros F, k.
-- **Schnakenberg**: f = a − u + u²v, g = b − u²v. Equilibrio homogéneo (u₀,v₀) en función de a, b.
-- **Brusselator**: f = a − (b+1)u + u²v, g = bu − u²v. Equilibrio (a, b/a); parámetros a, b.
+- **Gray-Scott**: f = −uv² + F(1−u), g = uv² − (F+k)v. Parameters F, k.
+- **Schnakenberg**: f = a − u + u²v, g = b − u²v. Homogeneous equilibrium (u₀,v₀) in terms of a, b.
+- **Brusselator**: f = a − (b+1)u + u²v, g = bu − u²v. Equilibrium (a, b/a); parameters a, b.
 
-Detalles de equilibrios y Jacobianos en `src/morphogenesis/rd_models.py` y en las notas `papers/notes/turing_key_equations.md`.
+Details of equilibria and Jacobians in `src/morphogenesis/rd_models.py` and in the notes `papers/notes/turing_key_equations.md`.

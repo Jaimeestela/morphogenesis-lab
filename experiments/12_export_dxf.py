@@ -1,5 +1,5 @@
 """
-Direct DXF/SVG export test: example polylines with layers (estancia, colector, rutas).
+Direct DXF/SVG export test: example polylines with layers (room, collector, routes).
 """
 
 import sys
@@ -16,14 +16,14 @@ ensure_output_dirs()
 
 # Example: one room with a few lines, collector, and one connection
 POLYLINES = {
-    "estancia_1": [
+    "room_1": [
         [(0, 0), (3, 0), (3, 2), (0, 2), (0, 0)],
         [(0.5, 0.5), (2.5, 0.5), (2.5, 1.5), (0.5, 1.5)],
     ],
-    "colector": [
+    "collector": [
         [(3.5, -0.2), (3.5, 2.2)],
     ],
-    "rutas": [
+    "routes": [
         [(3, 1), (3.5, 1)],
     ],
 }

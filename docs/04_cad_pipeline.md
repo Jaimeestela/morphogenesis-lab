@@ -1,36 +1,36 @@
-# Pipeline hacia CAD
+# Pipeline to CAD
 
-## Idea principal
+## Main idea
 
-**Reacción–difusión → campo escalar → campo vectorial → streamlines → curvas CAD**
+**Reaction–diffusion → scalar field → vector field → streamlines → CAD curves**
 
-1. **Reacción–difusión**: Se simula un modelo (Gray-Scott, Schnakenberg, Brusselator) en 2D y se obtienen campos u(x,y), v(x,y) en un snapshot.
-2. **Campo escalar**: Se define φ a partir de u/v (p. ej. φ = u, φ = v, o φ = u−v, etc.) sobre la malla.
-3. **Campo vectorial**: Se obtiene **∇φ** (gradiente) o un campo rotado (p. ej. perpendicular para seguir isocontornos) en los puntos de la malla; se interpola si hace falta en puntos arbitrarios.
-4. **Streamlines**: Se integran líneas de flujo del campo vectorial con paso fijo y separación mínima entre líneas; se hace **clipping** al dominio (polígono Shapely) y se respetan obstáculos (agujeros).
-5. **Curvas CAD**: Las polilíneas resultantes se exportan a **DXF** (capas por estancia/colector/rutas) y **SVG** para inspección.
+1. **Reaction–diffusion**: A model (Gray-Scott, Schnakenberg, Brusselator) is simulated in 2D and fields u(x,y), v(x,y) are obtained at a snapshot.
+2. **Scalar field**: φ is defined from u/v (e.g. φ = u, φ = v, or φ = u−v, etc.) on the grid.
+3. **Vector field**: **∇φ** (gradient) or a rotated field (e.g. perpendicular to follow isocontours) is computed on the grid; interpolated if needed at arbitrary points.
+4. **Streamlines**: Flow lines of the vector field are integrated with fixed step and minimum separation between lines; **clipping** to the domain (Shapely polygon) and obstacles (holes) are respected.
+5. **CAD curves**: The resulting polylines are exported to **DXF** (layers per room/collector/routes) and **SVG** for inspection.
 
-Así se generan trayectorias “tipo tuberías” o mecanizado que siguen la estructura del patrón.
+This yields “pipe-like” or machining trajectories that follow the pattern structure.
 
-## Alternativa: planner determinista (serpentine)
+## Alternative: deterministic planner (serpentine)
 
-**Serpentine / boustrophedon por estancia → conexiones a colector**
+**Serpentine / boustrophedon per room → connections to collector**
 
-- Por cada estancia (polígono): se rellena con un patrón en serpentina (ida y vuelta) con paso (pitch) y radio mínimo de curvatura fijados.
-- Las estancias se conectan entre sí y a un **colector** mediante un grafo de rutas (corredores). Esto da un “circuito” por habitación más un árbol de conexión al colector.
-- Este baseline es **determinista** y no depende del patrón RD; sirve para comparar calidad (longitud, cobertura, cruces) con el enfoque basado en streamlines.
+- For each room (polygon): fill with a serpentine pattern (back and forth) with pitch and minimum radius of curvature set.
+- Rooms are connected to each other and to a **collector** via a route graph (corridors). This gives a “circuit” per room plus a connection tree to the collector.
+- This baseline is **deterministic** and does not depend on the RD pattern; it is used to compare quality (length, coverage, crossings) with the streamline-based approach.
 
-## Criterios de evaluación
+## Evaluation criteria
 
-Para comparar y validar trayectorias (streamlines vs serpentine, o distintas semillas/parámetros):
+To compare and validate trajectories (streamlines vs serpentine, or different seeds/parameters):
 
-| Criterio | Descripción |
-|----------|-------------|
-| **Longitud total** | Suma de longitudes de todas las polilíneas (por estancia y colector). |
-| **Uniformidad de cobertura** | Distribución de distancias de puntos del dominio a la polilínea más cercana (histograma, desv. típica). |
-| **Radios mínimos** | Mínimo radio de curvatura en esquinas; debe respetar un umbral (p. ej. para tuberías). |
-| **Cruces** | Número de intersecciones entre segmentos (evitar cuando sea posible). |
-| **Distancia a bordes** | Distancia mínima de la trayectoria al borde del dominio; debe ser ≥ margen. |
-| **Número de bucles** | Cuenta de componentes conexas o bucles cerrados; relevante para circuitos de suelo radiante. |
+| Criterion | Description |
+|-----------|-------------|
+| **Total length** | Sum of lengths of all polylines (per room and collector). |
+| **Coverage uniformity** | Distribution of distances from domain points to nearest polyline (histogram, std). |
+| **Minimum radii** | Minimum radius of curvature at bends; must respect a threshold (e.g. for pipes). |
+| **Crossings** | Number of intersections between segments (avoid when possible). |
+| **Distance to borders** | Minimum distance of the trajectory to the domain boundary; must be ≥ margin. |
+| **Number of loops** | Count of connected components or closed loops; relevant for underfloor heating circuits. |
 
-Estos criterios se implementan o referencian en `src/morphogenesis/metrics.py` y en los experimentos de export (DXF/SVG).
+These criteria are implemented or referenced in `src/morphogenesis/metrics.py` and in the export experiments (DXF/SVG).

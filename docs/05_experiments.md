@@ -1,23 +1,23 @@
-# Descripción de experimentos
+# Experiment description
 
 ## Smoke test
 
-- **`experiments/00_smoke_test.py`**: Importa el paquete, ejecuta una mini-simulación (pocos pasos) y comprueba que no hay NaNs. Sirve para validar instalación.
+- **`experiments/00_smoke_test.py`**: Imports the package, runs a short simulation (few steps), and checks for no NaNs. Used to validate installation.
 
-## Patrones 2D
+## 2D patterns
 
-- **`01_gray_scott_2d.py`**: Gray-Scott en malla 2D; parámetros para patrón estable; guarda snapshots PNG y arrays en `data/outputs/patterns/`.
-- **`02_schnakenberg_2d.py`**: Schnakenberg; idem.
-- **`03_brusselator_2d.py`**: Brusselator; idem.
+- **`01_gray_scott_2d.py`**: Gray-Scott on a 2D grid; parameters for a stable pattern; saves PNG snapshots and arrays in `data/outputs/patterns/`.
+- **`02_schnakenberg_2d.py`**: Schnakenberg; same.
+- **`03_brusselator_2d.py`**: Brusselator; same.
 
-## Pipeline RD → trayectorias
+## RD → trajectories pipeline
 
-- **`10_rd_to_streamlines.py`**: Carga un snapshot u/v (o genera uno), construye φ, deriva campo vectorial, genera streamlines dentro de un polígono (Shapely), exporta DXF y SVG a `data/outputs/exports/`.
-- **`11_rd_to_serpentine_rooms.py`**: Dominio multi-estancia (p. ej. desde `data/domains/simple_rooms.geojson`); genera serpentine por estancia y grafo de rutas al colector; exporta DXF/SVG con capas por estancia/colector/rutas.
-- **`12_export_dxf.py`**: Prueba directa de export DXF (polilíneas de ejemplo o salida de 10/11) con capas.
+- **`10_rd_to_streamlines.py`**: Loads a u/v snapshot (or generates one), builds φ, derives vector field, generates streamlines inside a polygon (Shapely), exports DXF and SVG to `data/outputs/exports/`.
+- **`11_rd_to_serpentine_rooms.py`**: Multi-room domain (e.g. from `data/domains/simple_rooms.geojson`); generates serpentine per room and route graph to collector; exports DXF/SVG with layers per room/collector/routes.
+- **`12_export_dxf.py`**: Direct DXF export test (example polylines or output from 10/11) with layers.
 
-## Reproducibilidad
+## Reproducibility
 
-- Semillas fijas (numpy.random.seed) donde aplique.
-- Parámetros en cabecera del script o en `config.py` para poder variar desde un solo lugar.
-- Logging básico y rutas de salida en `data/outputs/`.
+- Fixed seeds (numpy.random.seed) where applicable.
+- Parameters in script header or in `config.py` so they can be varied from a single place.
+- Basic logging and output paths in `data/outputs/`.

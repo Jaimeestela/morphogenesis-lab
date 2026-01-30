@@ -1,16 +1,16 @@
-# Cursor: export CAD
+# Cursor: CAD export
 
-## Objetivo
+## Objective
 
-Exportar polilíneas a DXF (R12 o ACAD2000) y SVG para inspección y uso en CAD/BIM.
+Export polylines to DXF (R12 or ACAD2000) and SVG for inspection and use in CAD/BIM.
 
-## Tareas
+## Tasks
 
-1. **dxf_export.py**: Polilíneas por capa (estancia, colector, rutas); formato DXF R12 o ACAD2000 (ezdxf).
-2. **svg_export.py**: Mismo contenido en SVG para vista rápida.
-3. Experimento 12: exportar un conjunto de polilíneas de ejemplo o salida de 10/11; verificar capas y que se abre en visor DXF/SVG.
+1. **dxf_export.py**: Polylines per layer (room, collector, routes); DXF R12 or ACAD2000 format (ezdxf).
+2. **svg_export.py**: Same content in SVG for quick viewing.
+3. Experiment 12: export a set of example polylines or output from 10/11; verify layers and that it opens in a DXF/SVG viewer.
 
-## Criterios
+## Criteria
 
-- DXF abrible en visor estándar; capas nombradas y asignadas correctamente.
-- SVG legible en navegador o Inkscape.
+- DXF opens in a standard viewer; layers named and assigned correctly.
+- SVG readable in browser or Inkscape.
