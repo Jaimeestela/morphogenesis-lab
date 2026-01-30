@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: morphogenesis-lab
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "morphogenesis-lab"
+    given-names: "contributors"
+repository-code: "https://github.com/.../morphogenesis-lab"
+license: MIT
+abstract: >
+  Laboratory for Turing-style reaction-diffusion pattern formation and CAD path
+  generation: numerical validation of homogeneous equilibrium instability and
+  export of streamlines/serpentine paths to DXF/SVG.
+references:
+  - type: article
+    title: "The chemical basis of morphogenesis"
+    authors:
+      - family-names: Turing
+        given-names: A. M.
+    journal: "Philosophical Transactions of the Royal Society of London B"
+    volume: 237
+    issue: 641
+    start: 37
+    end: 72
+    year: 1952
+    doi: "10.1098/rstb.1952.0012"

@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "room_0" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [5, 0], [5, 4], [0, 4], [0, 0]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "room_1" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[6, 0], [11, 0], [11, 4], [6, 4], [6, 0]]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+numpy>=1.24
+scipy>=1.10
+numba>=0.57
+matplotlib>=3.7
+shapely>=2.0
+scikit-image>=0.20
+networkx>=3.0
+ezdxf>=1.0
+svgwrite>=1.4
+# optional: trimesh, pyvista
