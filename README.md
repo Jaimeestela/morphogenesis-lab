@@ -108,14 +108,6 @@ Then check `data/outputs/patterns/` for pattern PNGs.
 
 ---
 
-## Next steps for FreeCAD/LignumBIM integration (future)
-
-- Import DXF in FreeCAD as sketch or 2D geometry and extrude/sweep for pipes or slabs.
-- Define layer conventions (room, collector, routes) compatible with BIM workflows.
-- Export 3D meshes (STL) or STEP from `mesh_export` for structural analysis or fabrication.
-
----
-
 ## Documentation
 
 - [docs/00_context.md](docs/00_context.md) — Project context.
